@@ -1,5 +1,7 @@
 /*
-  This ia a library written for the SparkX Qwiic Power Switch.
+  This is a library written for the SparkX Qwiic Power Switch.
+  Written by: Paul Clark (PaulZC)
+  Date: April 23rd, 2020
 
   It is based extensively on the SparkFun_PCA9536_Arduino_Library:
   Written by Jim Lindblom @ SparkFun Electronics, May 4th, 2018
