@@ -1,11 +1,11 @@
-# Qwiic Power Switch Library
+# SparkFun Qwiic Power Switch Arduino Library
 
 The Qwiic power switch is a simple little board which can be used to switch the power to your Qwiic
 system. Many Qwiic boards draw very little current when not being used, but there are some that draw
 significantly more. The power switch allows you to switch the power to those boards, so you can minimize the
 current draw and extend your battery life when you need to.
 
-This library lets you control and monitor the Qwiic Power Switch.
+This is a library for the PCA9536 4-bit I/O digital expander which lets you control and monitor the Qwiic Power Switch.
 
 ## Repository Contents
 
@@ -17,7 +17,7 @@ This library lets you control and monitor the Qwiic Power Switch.
 ## Documentation
 
 - **[Installing an Arduino Library Guide](https://learn.sparkfun.com/tutorials/installing-an-arduino-library)** - Basic information on how to install an Arduino library.
-- **[Product Repository](https://github.com/PaulZC/Qwiic_Power_Switch)** - Main repository (including hardware files)
+- **[Product Repository](https://github.com/sparkfun/Qwiic_Power_Switch)** - Main repository (including hardware files)
 
 ## License Information
 
