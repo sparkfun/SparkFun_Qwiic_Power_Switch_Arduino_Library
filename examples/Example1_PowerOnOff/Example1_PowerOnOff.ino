@@ -20,7 +20,7 @@
 
 #include <Wire.h>
 
-#include <Qwiic_Power_Switch_Library.h>
+#include <SparkFun_Qwiic_Power_Switch_Arduino_Library.h>
 
 QWIIC_POWER mySwitch;
 

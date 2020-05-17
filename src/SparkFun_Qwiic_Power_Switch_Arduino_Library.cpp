@@ -15,7 +15,7 @@
   MIT Licence
 */
 
-#include <Qwiic_Power_Switch_Library.h>
+#include <SparkFun_Qwiic_Power_Switch_Arduino_Library.h>
 
 #ifdef DEBUG_PCA9536
 #define PCA9536_DEBUG(x) if (_debugPort != NULL) { _debugPort->print(x);}

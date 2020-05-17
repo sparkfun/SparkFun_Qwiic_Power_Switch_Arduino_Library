@@ -1,6 +1,6 @@
 # SparkFun Qwiic Power Switch Arduino Library
 
-The Qwiic power switch is a simple little board which can be used to switch the power to your Qwiic
+The Qwiic Power Switch is a simple little board which can be used to switch the power to your Qwiic
 system. Many Qwiic boards draw very little current when not being used, but there are some that draw
 significantly more. The power switch allows you to switch the power to those boards, so you can minimize the
 current draw and extend your battery life when you need to.
