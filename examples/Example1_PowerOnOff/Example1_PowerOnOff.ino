@@ -44,8 +44,10 @@ void setup(void)
   mySwitch.pinMode(1, INPUT);
   mySwitch.pinMode(2, INPUT);
 
-  Serial.println(F("1) Enable power"));
-  Serial.println(F("2) Disable power"));
+  Serial.println(F("1) Enable power and I2C"));
+  Serial.println(F("2) Disable power and I2C"));
+  Serial.println(F("3) Enable I2C isolation"));
+  Serial.println(F("4) Disable I2C isolation"));
 }
 
 void loop()
@@ -58,13 +60,25 @@ void loop()
     {
       // Switch the power on
       mySwitch.powerOn();
-      Serial.println(F("Power is ON."));
+      Serial.println(F("Power is ON. I2C isolation is disabled."));
     }
     else if (incoming == '2')
     {
       // Switch the power off
       mySwitch.powerOff();
-      Serial.println(F("Power is OFF."));
+      Serial.println(F("Power is OFF. I2C isolation is enabled."));
+    }
+    else if (incoming == '3')
+    {
+      // Enable I2C isolation = I2C bus _is_ isolated
+      mySwitch.isolationOn();
+      Serial.println(F("I2C isolation enabled. I2C is isolated."));
+    }
+    else if (incoming == '4')
+    {
+      // Disable I2C isolation = I2C bus _is not_ isolated
+      mySwitch.isolationOff();
+      Serial.println(F("I2C isolation disabled. I2C is not isolated."));
     }
 
     // Read and print the GPIO1/GPIO2 state
@@ -72,5 +86,11 @@ void loop()
     Serial.println(mySwitch.digitalRead(1));
     Serial.print(F("GPIO2 is: "));
     Serial.println(mySwitch.digitalRead(2));
+
+    // Read any extra Serial bytes (e.g. CR or LF)
+    while (Serial.available() > 0)
+    {
+      Serial.read();
+    }
   }
 }

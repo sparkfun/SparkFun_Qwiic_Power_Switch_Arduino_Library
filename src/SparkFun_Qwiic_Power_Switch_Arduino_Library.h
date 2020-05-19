@@ -77,6 +77,13 @@ public:
     // switch Qwiic power
     PCA9536_error_t switchPower(uint8_t value);
 
+    // enable I2C isolation = I2C bus _is_ isolated
+    PCA9536_error_t isolationOn();
+    // disable I2C isolation = I2C bus _is not_ isolated
+    PCA9536_error_t isolationOff();
+    // switch I2C isolation: 0 = I2C is not isolated; 1 = I2C is isolated.
+    PCA9536_error_t switchIsolation(uint8_t value);
+
     // setDebugStream to enable library debug statements
     void setDebugStream(Stream &debugPort = Serial);
 

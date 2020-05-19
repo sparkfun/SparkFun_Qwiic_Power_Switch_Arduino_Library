@@ -47,6 +47,10 @@ boolean QWIIC_POWER::begin(TwoWire &wirePort)
   pinMode(0, OUTPUT); // Make GPIO0 an output
   write(0, HIGH); // Set the output high
 
+  // Enable I2C
+  pinMode(3, OUTPUT); // Make GPIO3 an output
+  write(3, HIGH); // Set the output high
+
   return (true);
 }
 
@@ -63,6 +67,10 @@ PCA9536_error_t QWIIC_POWER::powerOn()
   pinMode(0, OUTPUT); // Make GPIO0 an output
   write(0, HIGH); // Set the output high
 
+  // Enable I2C
+  pinMode(3, OUTPUT); // Make GPIO3 an output
+  write(3, HIGH); // Set the output high
+
   return PCA9536_ERROR_SUCCESS;
 }
 
@@ -72,6 +80,10 @@ PCA9536_error_t QWIIC_POWER::powerOff()
   pinMode(0, OUTPUT); // Make GPIO0 an output
   write(0, LOW); // Set the output low
 
+  // Disable I2C
+  pinMode(3, OUTPUT); // Make GPIO3 an output
+  write(3, LOW); // Set the output low
+
   return PCA9536_ERROR_SUCCESS;
 }
 
@@ -79,6 +91,42 @@ PCA9536_error_t QWIIC_POWER::switchPower(uint8_t value)
 {
   pinMode(0, OUTPUT); // Make GPIO0 an output
   write(0, value); // Set the output
+
+  pinMode(3, OUTPUT); // Make GPIO3 an output
+  write(3, value); // Set the output
+
+  return PCA9536_ERROR_SUCCESS;
+}
+
+PCA9536_error_t QWIIC_POWER::isolationOn()
+{
+  // Enable I2C isolation = I2C bus _is_ isolated
+  pinMode(3, OUTPUT); // Make GPIO3 an output
+  write(3, LOW); // Set the output low
+
+  return PCA9536_ERROR_SUCCESS;
+}
+
+PCA9536_error_t QWIIC_POWER::isolationOff()
+{
+  // Disable I2C isolation = I2C bus _is not_ isolated
+  pinMode(3, OUTPUT); // Make GPIO3 an output
+  write(3, HIGH); // Set the output high
+
+  return PCA9536_ERROR_SUCCESS;
+}
+
+PCA9536_error_t QWIIC_POWER::switchIsolation(uint8_t value)
+{
+  pinMode(3, OUTPUT); // Make GPIO3 an output
+  if (value == 0) // If value is 0
+  {
+    write(3, HIGH); // Set the output high to disable isolation
+  }
+  else
+  {
+    write(3, LOW); // Set the output low to enable isolation
+  }
 
   return PCA9536_ERROR_SUCCESS;
 }
