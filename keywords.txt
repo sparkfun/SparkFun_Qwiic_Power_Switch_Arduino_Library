@@ -7,7 +7,7 @@
 #######################################
 
 QWIIC_POWER	KEYWORD1
-Qwiic_Power_Switch_Library	KEYWORD1
+SparkFun_Qwiic_Power_Switch_Arduino_Library	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -18,15 +18,18 @@ isConnected	KEYWORD2
 powerOn	KEYWORD2
 powerOff	KEYWORD2
 switchPower	KEYWORD2
+isolationOn	KEYWORD2
+isolationOff	KEYWORD2
+switchIsolation	KEYWORD2
+setDebugStream	KEYWORD2
 pinMode	KEYWORD2
 digitalWrite	KEYWORD2
 write	KEYWORD2
+readReg KEYWORD2
 digitalRead	KEYWORD2
 read	KEYWORD2
-setDebugStream	KEYWORD2
 invert	KEYWORD2
 revert	KEYWORD2
-readReg KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

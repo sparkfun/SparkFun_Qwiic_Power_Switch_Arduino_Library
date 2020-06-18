@@ -11,6 +11,7 @@
   separate I/O pins. For the Qwiic Power Switch:
   GPIO0 switches the Qwiic power via a P-FET. If GPIO0 is high, power is enabled.
   GPIO1 and GPIO2 are general purpose pins which can be used for input or output.
+  GPIO3 can isolate the I2C bus via a PCA9306. If GPIO3 is low, the bus is isolated.
 
   MIT Licence
 */

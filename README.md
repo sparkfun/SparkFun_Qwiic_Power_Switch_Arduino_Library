@@ -28,6 +28,4 @@ Please maintain the attribution and release anything derivative under the same l
 
 Distributed as-is; no warranty is given.
 
-Enjoy!
-
-**_Paul_**
+**_Your friends at SparkFun_**

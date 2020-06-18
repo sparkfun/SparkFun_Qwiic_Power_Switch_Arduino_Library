@@ -14,8 +14,9 @@
   This example demonstrates how to use the Qwiic Power Switch and read the additional GPIO pins
 
   Hardware Connections:
-  Attach the Qwiic Power Switch IN to your Arduino
+  Attach your Arduino to the Qwiic Power Switch IN
   Plug your Qwiic device into the Qwiic Power Switch OUT
+  https://www.sparkfun.com/products/15081
 */
 
 #include <Wire.h>
