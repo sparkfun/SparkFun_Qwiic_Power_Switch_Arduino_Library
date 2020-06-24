@@ -21,7 +21,7 @@
 
 #include <Wire.h>
 
-#include <SparkFun_Qwiic_Power_Switch_Arduino_Library.h>
+#include <SparkFun_Qwiic_Power_Switch_Arduino_Library.h> // Click here to get the library: http://librarymanager/All#SparkFun_Qwiic_Power_Switch
 
 QWIIC_POWER mySwitch;
 
