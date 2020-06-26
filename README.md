@@ -14,10 +14,13 @@ This is a library for the PCA9536 4-bit I/O digital expander which lets you cont
 - **keywords.txt** - Keywords from this library that will be highlighted in the Arduino IDE.
 - **library.properties** - General library properties for the Arduino package manager.
 
+## Products That Use This Library
+
+- [Qwiic Power Switch (SPX-16740)](https://www.sparkfun.com/products/16740)
+
 ## Documentation
 
 - **[Installing an Arduino Library Guide](https://learn.sparkfun.com/tutorials/installing-an-arduino-library)** - Basic information on how to install an Arduino library.
-- **[Product Repository](https://github.com/sparkfun/Qwiic_Power_Switch)** - Main repository (including hardware files)
 
 ## License Information
 
