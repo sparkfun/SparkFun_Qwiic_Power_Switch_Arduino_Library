@@ -66,10 +66,10 @@ public:
     QWIIC_POWER();
 
     // Perform initial configuration. Has to be called once.
-    boolean begin(TwoWire &wirePort = Wire);
+    bool begin(TwoWire &wirePort = Wire);
 
     // Check whether PCA9536 device is connected
-    boolean isConnected(void);
+    bool isConnected(void);
 
     // enable Qwiic power
     PCA9536_error_t powerOn();

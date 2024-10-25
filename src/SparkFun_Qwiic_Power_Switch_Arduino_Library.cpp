@@ -35,7 +35,7 @@ QWIIC_POWER::QWIIC_POWER()
   _deviceAddress = PCA9536_ADDRESS_INVALID;
 }
 
-boolean QWIIC_POWER::begin(TwoWire &wirePort)
+bool QWIIC_POWER::begin(TwoWire &wirePort)
 {
   _i2cPort = &wirePort; //Grab which port the user wants us to use
   _deviceAddress = PCA9536_ADDRESS;
@@ -44,19 +44,11 @@ boolean QWIIC_POWER::begin(TwoWire &wirePort)
   if (isConnected() == false)
     return (false);
 
-  // Enable Qwiic Power
-  pinMode(0, OUTPUT); // Make GPIO0 an output
-  write(0, HIGH); // Set the output high
-
-  // Enable I2C
-  pinMode(3, OUTPUT); // Make GPIO3 an output
-  write(3, HIGH); // Set the output high
-
-  return (true);
+  return (powerOn() == PCA9536_ERROR_SUCCESS);
 }
 
 //Returns true if I2C device ack's
-boolean QWIIC_POWER::isConnected()
+bool QWIIC_POWER::isConnected()
 {
   _i2cPort->beginTransmission((uint8_t)_deviceAddress);
   return ((_i2cPort->endTransmission()) == 0);
@@ -64,57 +56,68 @@ boolean QWIIC_POWER::isConnected()
 
 PCA9536_error_t QWIIC_POWER::powerOn()
 {
-  // Enable Qwiic Power
+  // Enable Qwiic Power by pulling GPIO0 high
   pinMode(0, OUTPUT); // Make GPIO0 an output
   write(0, HIGH); // Set the output high
 
-  // Enable I2C
-  pinMode(3, OUTPUT); // Make GPIO3 an output
-  write(3, HIGH); // Set the output high
+  // Wait for power to stabilize
+  delay(10);
 
-  return PCA9536_ERROR_SUCCESS;
+  // Now enable I2C by pulling GPIO3 high
+  pinMode(3, OUTPUT); // Make GPIO3 an output
+  return (write(3, HIGH)); // Set the output high
 }
 
 PCA9536_error_t QWIIC_POWER::powerOff()
 {
-  // Disable Qwiic Power
-  pinMode(0, OUTPUT); // Make GPIO0 an output
-  write(0, LOW); // Set the output low
-
-  // Disable I2C
+  // Disable I2C first - to avoid corruption when the power goes off
   pinMode(3, OUTPUT); // Make GPIO3 an output
   write(3, LOW); // Set the output low
 
-  return PCA9536_ERROR_SUCCESS;
+  // Wait
+  delay(10);
+
+  // Now disable Qwiic Power
+  pinMode(0, OUTPUT); // Make GPIO0 an output
+  return (write(0, LOW)); // Set the output low
 }
 
 PCA9536_error_t QWIIC_POWER::switchPower(uint8_t value)
 {
-  pinMode(0, OUTPUT); // Make GPIO0 an output
-  write(0, value); // Set the output
+  if (value == LOW) // If we are turning off, isolate first
+  {
+    pinMode(3, OUTPUT); // Make GPIO3 an output
+    write(3, value); // Set the output
 
-  pinMode(3, OUTPUT); // Make GPIO3 an output
-  write(3, value); // Set the output
+    delay(10);
 
-  return PCA9536_ERROR_SUCCESS;
+    pinMode(0, OUTPUT); // Make GPIO0 an output
+    return (write(0, value)); // Set the output
+  }
+  else
+  {
+    pinMode(0, OUTPUT); // Make GPIO0 an output
+    write(0, value); // Set the output
+
+    delay(10);
+
+    pinMode(3, OUTPUT); // Make GPIO3 an output
+    return (write(3, value)); // Set the output
+  }
 }
 
 PCA9536_error_t QWIIC_POWER::isolationOn()
 {
   // Enable I2C isolation = I2C bus _is_ isolated
   pinMode(3, OUTPUT); // Make GPIO3 an output
-  write(3, LOW); // Set the output low
-
-  return PCA9536_ERROR_SUCCESS;
+  return (write(3, LOW)); // Set the output low
 }
 
 PCA9536_error_t QWIIC_POWER::isolationOff()
 {
   // Disable I2C isolation = I2C bus _is not_ isolated
   pinMode(3, OUTPUT); // Make GPIO3 an output
-  write(3, HIGH); // Set the output high
-
-  return PCA9536_ERROR_SUCCESS;
+  return (write(3, HIGH)); // Set the output high
 }
 
 PCA9536_error_t QWIIC_POWER::switchIsolation(uint8_t value)
@@ -122,14 +125,12 @@ PCA9536_error_t QWIIC_POWER::switchIsolation(uint8_t value)
   pinMode(3, OUTPUT); // Make GPIO3 an output
   if (value == 0) // If value is 0
   {
-    write(3, HIGH); // Set the output high to disable isolation
+    return (write(3, HIGH)); // Set the output high to disable isolation
   }
   else
   {
-    write(3, LOW); // Set the output low to enable isolation
+    return (write(3, LOW)); // Set the output low to enable isolation
   }
-
-  return PCA9536_ERROR_SUCCESS;
 }
 
 void QWIIC_POWER::setDebugStream(Stream & debugPort)
