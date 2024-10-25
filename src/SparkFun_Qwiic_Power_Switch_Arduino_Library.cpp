@@ -143,7 +143,7 @@ PCA9536_error_t QWIIC_POWER::pinMode(uint8_t pin, uint8_t mode)
   PCA9536_error_t err;
   uint8_t cfgRegister = 0;
 
-  if (pin > 4) return PCA9536_ERROR_UNDEFINED;
+  if (pin > 3) return PCA9536_ERROR_UNDEFINED;
 
   err = readI2CRegister(&cfgRegister, PCA9536_REGISTER_CONFIGURATION);
   if (err != PCA9536_ERROR_SUCCESS)
@@ -163,7 +163,7 @@ PCA9536_error_t QWIIC_POWER::write(uint8_t pin, uint8_t value)
   PCA9536_error_t err;
   uint8_t outputRegister = 0;
 
-  if (pin > 4) return PCA9536_ERROR_UNDEFINED;
+  if (pin > 3) return PCA9536_ERROR_UNDEFINED;
 
   err = readI2CRegister(&outputRegister, PCA9536_REGISTER_OUTPUT_PORT);
   if (err != PCA9536_ERROR_SUCCESS)
@@ -202,7 +202,7 @@ uint8_t QWIIC_POWER::read(uint8_t pin)
   PCA9536_error_t err;
   uint8_t inputRegister = 0;
 
-  if (pin > 4) return PCA9536_ERROR_UNDEFINED;
+  if (pin > 3) return PCA9536_ERROR_UNDEFINED;
 
   err = readI2CRegister(&inputRegister, PCA9536_REGISTER_INPUT_PORT);
   if (err != PCA9536_ERROR_SUCCESS)
@@ -222,7 +222,7 @@ PCA9536_error_t QWIIC_POWER::invert(uint8_t pin, PCA9536_invert_t inversion)
   PCA9536_error_t err;
   uint8_t invertRegister = 0;
 
-  if (pin > 4) return PCA9536_ERROR_UNDEFINED;
+  if (pin > 3) return PCA9536_ERROR_UNDEFINED;
 
   err = readI2CRegister(&invertRegister, PCA9536_REGISTER_POLARITY_INVERSION);
   if (err != PCA9536_ERROR_SUCCESS)
