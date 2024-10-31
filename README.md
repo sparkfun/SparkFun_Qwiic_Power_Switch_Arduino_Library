@@ -41,5 +41,3 @@ Distributed as-is; no warranty is given.
 **_Your friends at SparkFun_**
 
 
-
-Many of our Qwiic products draw very little current when in standby, but there are some that draw considerably more. Products like our top-end [u-blox GNSS boards](https://www.sparkfun.com/search/results?term=u-blox+F9R+F9P) in particular. There are times when you wish you could switch them off to save power, and the [SparkFun Qwiic Power Switch (QPS)](https://www.sparkfun.com/products/26784) allows you to do exactly that! With the Qwiic Power Switch, you can selectively turn off these devices to conserve energy and extend your battery life.
